@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const username = 'admin'
+const password = '1234'
+
 const httpCliente = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://localhost:8088'
 })
 
 class ApiService{
@@ -11,7 +14,19 @@ class ApiService{
     }
 
     post(url, objeto){
-        return httpCliente.post(this.apiUrl+url, objeto);
+
+        const token = Buffer.from(`${username}:${password}`, 'utf8').toString('base64')
+
+        const auth = {
+            username : 'admin',
+            password : '1234'
+        }
+        this.apiUrl='http://localhost:8088'
+        return axios.post(this.apiUrl+url, objeto,{
+             
+                headers: { 'Content-Type': 'multipart/form-data',
+                 'Authorization': `Bearer ${token}`} 
+        });
     }
 
     put(url, objeto){

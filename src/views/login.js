@@ -24,10 +24,10 @@ class Login extends React.Component {
     }
 
     entrar = () => {
-       this.service.autenticar({
-            email: this.state.email,
-            senha: this.state.senha
-        }).then( response =>{
+       this.service.logar(
+             this.state.email,
+             this.state.senha
+        ).then( response =>{
             LocalStorageService.adicionarItem('usuario_logado', response.data);
             this.props.history.push('/home');
             alert(response)
