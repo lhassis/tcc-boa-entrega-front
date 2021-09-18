@@ -4,7 +4,7 @@ import apiService from '../apiservice';
 class UsuarioService extends ApiService{
 
     constructor(){
-        super('/api/usuarios')
+        super()
     }
 
     autenticar(credenciais){
@@ -13,6 +13,15 @@ class UsuarioService extends ApiService{
 
     obterSaldoPorUsuario(id){
         return this.get(`/${id}/saldo`)
+    }
+
+    logar(usuario, senha){
+        var bodyFormData = new FormData();
+        bodyFormData.append('username', usuario)
+        bodyFormData.append('password', senha)
+        bodyFormData.append('grant_type', 'password')
+        bodyFormData.append('scope', 'web')    
+    return this.post('/oauth/token', bodyFormData)
     }
 }
 
