@@ -1,10 +1,11 @@
 import axios from 'axios';
+import LocalStorageService from './service/localStorageService';
 
 const username = 'admin'
 const password = '1234'
 
 const httpCliente = axios.create({
-    baseURL: 'http://localhost:8088'
+    baseURL: 'http://localhost:8082'
 })
 
 class ApiService{
@@ -17,15 +18,12 @@ class ApiService{
 
         const token = Buffer.from(`${username}:${password}`, 'utf8').toString('base64')
 
-        const auth = {
-            username : 'admin',
-            password : '1234'
-        }
-        this.apiUrl='http://localhost:8088'
-        return axios.post(this.apiUrl+url, objeto,{
+        //this.apiUrl='http://localhost:8088'
+        return httpCliente.post(url, objeto,{
              
                 headers: { 'Content-Type': 'multipart/form-data',
-                 'Authorization': `Bearer ${token}`} 
+                 'Authorization': `Basic ${token}`
+                } 
         });
     }
 
@@ -37,8 +35,9 @@ class ApiService{
         return httpCliente.delete(this.apiUrl+url);
     }
 
-    get(url){
-        return httpCliente.get(this.apiUrl+url);
+    get(url, customBaseUrl){
+        const token = LocalStorageService.obterToken();
+        return httpCliente.get(url, {headers: {'Accept': '*/*', 'Authorization': `Bearer ${token}`}, baseURL: this.apiUrl});
     }
 }
 

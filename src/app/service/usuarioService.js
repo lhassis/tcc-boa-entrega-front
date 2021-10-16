@@ -1,5 +1,4 @@
 import ApiService from '../apiservice';
-import apiService from '../apiservice';
 
 class UsuarioService extends ApiService{
 
