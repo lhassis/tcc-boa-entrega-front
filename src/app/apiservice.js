@@ -14,7 +14,7 @@ class ApiService{
         this.apiUrl =apiUrl;
     }
 
-    post(url, objeto){
+    async post(url, objeto){
 
         const token = Buffer.from(`${username}:${password}`, 'utf8').toString('base64')
 
@@ -37,7 +37,7 @@ class ApiService{
         return httpCliente.delete(this.apiUrl+url);
     }
 
-    get(url, customBaseUrl){
+    async get(url){
         const token = LocalStorageService.obterToken();
         try{
             return httpCliente.get(url, {headers: {'Accept': '*/*', 'Authorization': `Bearer ${token}`}, baseURL: this.apiUrl})

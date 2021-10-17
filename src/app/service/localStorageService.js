@@ -4,6 +4,10 @@
         localStorage.setItem(chave, JSON.stringify(valor));
     }
 
+    static removerItem(chave) {
+        localStorage.removeItem(chave);
+    }
+
     static obterItem(chave){
         return localStorage.getItem(chave);
     }

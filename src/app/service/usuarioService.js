@@ -1,4 +1,5 @@
 import ApiService from '../apiservice';
+import LocalStorageService from './localStorageService';
 
 class UsuarioService extends ApiService{
 
@@ -16,7 +17,11 @@ class UsuarioService extends ApiService{
         bodyFormData.append('password', senha)
         bodyFormData.append('grant_type', 'password')
         bodyFormData.append('scope', 'web')    
-    return this.post('/oauth/token', bodyFormData)
+        return this.post('/oauth/token', bodyFormData)
+    }
+
+    logado() {
+        return !!LocalStorageService.obterToken();
     }
 }
 

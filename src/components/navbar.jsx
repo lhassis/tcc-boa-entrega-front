@@ -1,8 +1,16 @@
 import React from 'react';
-import NavBarItem from './navbaritem'
 import {Container, Nav, Navbar as NavbarBootstrap, NavDropdown} from 'react-bootstrap'
+import { useHistory } from 'react-router';
+import LocalStorageService from '../app/service/localStorageService';
+import UsuarioService from '../app/service/usuarioService';
+
+const usuarioService = new UsuarioService();
 
 function Navbar() {
+
+  const handleLogout = () => {
+    LocalStorageService.removerItem('usuario_logado');
+  }
 
     return (
 
@@ -17,6 +25,7 @@ function Navbar() {
             </Nav>
             <Nav>
               <Nav.Link href="#login">Login</Nav.Link>
+              <Nav.Link href="#login" onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
           </NavbarBootstrap.Collapse>
           </Container>
