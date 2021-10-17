@@ -5,7 +5,7 @@ const username = 'admin'
 const password = '1234'
 
 const httpCliente = axios.create({
-    baseURL: 'http://localhost:8082'
+    baseURL: process.env.REACT_APP_URL_GATEWAY
 })
 
 class ApiService{
@@ -24,6 +24,8 @@ class ApiService{
                 headers: { 'Content-Type': 'multipart/form-data',
                  'Authorization': `Basic ${token}`
                 } 
+        }).catch((error) => {
+            alert(error);
         });
     }
 
@@ -37,7 +39,14 @@ class ApiService{
 
     get(url, customBaseUrl){
         const token = LocalStorageService.obterToken();
-        return httpCliente.get(url, {headers: {'Accept': '*/*', 'Authorization': `Bearer ${token}`}, baseURL: this.apiUrl});
+        try{
+            return httpCliente.get(url, {headers: {'Accept': '*/*', 'Authorization': `Bearer ${token}`}, baseURL: this.apiUrl})
+            .catch((error) => {
+                alert(error);
+            });
+        } catch (error) {
+            alert(error);
+        }
     }
 }
 

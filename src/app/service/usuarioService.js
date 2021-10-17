@@ -10,10 +10,6 @@ class UsuarioService extends ApiService{
         return this.post('/autenticar', credenciais);
     }
 
-    obterSaldoPorUsuario(id){
-        return this.get(`/${id}/saldo`)
-    }
-
     logar(usuario, senha){
         var bodyFormData = new FormData();
         bodyFormData.append('username', usuario)

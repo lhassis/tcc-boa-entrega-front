@@ -14,17 +14,7 @@ constructor(){
     }
 
     componentDidMount(){
-       const usuarioLogadoString = localStorage.getItem('usuario_logado');
-       const usuarioLogado = JSON.parse(usuarioLogadoString);
-       console.log(usuarioLogado);
 
-
-       this.usuarioService.obterSaldoPorUsuario(usuarioLogado.id)
-        .then(response =>{
-            this.setState({saldo : response.data})
-        }).catch(error =>{
-            console.error(error.response)
-        })
     }
 
     render() {

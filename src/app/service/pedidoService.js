@@ -3,7 +3,7 @@ import ApiService from '../apiservice';
 class PedidoService extends ApiService{
 
     constructor(){
-        super('http://localhost:8082')
+        super()
     }
 
     buscarNaoEntregues(){

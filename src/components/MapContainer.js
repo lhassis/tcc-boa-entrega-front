@@ -1,5 +1,5 @@
 import React, { Component, useCallback, useEffect, useRef, useState } from "react";
-import { DirectionsRenderer, DirectionsService, GoogleMap, useJsApiLoader, useLoadScript } from '@react-google-maps/api';
+import { DirectionsRenderer, DirectionsService, GoogleMap, useLoadScript } from '@react-google-maps/api';
 
 const objectsHeight = '450px';
 

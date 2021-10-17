@@ -9,7 +9,7 @@ function Pedidos() {
   const [dataSource, setDataSource] = useState();
   useEffect(async () => {
     const naoEntregues = await service.buscarNaoEntregues();
-    setDataSource(naoEntregues.data);
+    setDataSource(naoEntregues?.data);
   }, []);
 
   return (
